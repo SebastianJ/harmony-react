@@ -55,7 +55,7 @@ function Component () {
 import { UserRejectedRequestError } from '@harmony-react/walletconnect-connector'
 
 function Component () {
-  const { error } = useWeb3React()
+  const { error } = useHarmonyReact()
   const isUserRejectedRequestError = error instanceof UserRejectedRequestError
   // ...
 }

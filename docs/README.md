@@ -6,7 +6,7 @@
   - [Web3ReactProvider](#web3reactprovider)
     - [Props](#props)
     - [Example](#example)
-  - [useWeb3React](#useweb3react)
+  - [useHarmonyReact](#useHarmonyReact)
     - [Arguments](#arguments)
     - [Example](#example-1)
   - [createWeb3ReactRoot](#createweb3reactroot)
@@ -81,8 +81,8 @@ function App () {
 }
 ```
 
-### useWeb3React
-If you're using Hooks (😇), useWeb3React will be your best friend. Call it from within any function component to access context variables, just like that. It accepts an optional `key` argument, if you're using [multiple roots](#createweb3reactroot).
+### useHarmonyReact
+If you're using Hooks (😇), useHarmonyReact will be your best friend. Call it from within any function component to access context variables, just like that. It accepts an optional `key` argument, if you're using [multiple roots](#createweb3reactroot).
 
 #### Arguments
 ```typescript
@@ -91,10 +91,10 @@ key?: string
 
 #### Example
 ```javascript
-import { useWeb3React } from '@harmony-react/core'
+import { useHarmonyReact } from '@harmony-react/core'
 
 function Component () {
-  const web3React = useWeb3React()
+  const web3React = useHarmonyReact()
   // ...
 }
 ```
@@ -106,7 +106,7 @@ In some cases, your dApp may want to maintain >1 active web3 connections simulta
 - Communicating with a sidechain and mainnet in tandem
 - Balancing an in-browser burner wallet with other connection methods
 
-In cases like these, you'll likely want to create a second (or maybe even third, but probably not fourth) root, which will function exactly like another [Web3ReactProvider](#web3reactprovider) (in fact, Web3ReactProvider uses createWeb3ReactRoot under the hood). It requires a `key` argument, used to identify the root to [useWeb3React](#useweb3react) (or [getWeb3ReactContext](#getweb3reactcontext)).
+In cases like these, you'll likely want to create a second (or maybe even third, but probably not fourth) root, which will function exactly like another [Web3ReactProvider](#web3reactprovider) (in fact, Web3ReactProvider uses createWeb3ReactRoot under the hood). It requires a `key` argument, used to identify the root to [useHarmonyReact](#useHarmonyReact) (or [getWeb3ReactContext](#getweb3reactcontext)).
 
 #### Arguments
 ```typescript
@@ -161,7 +161,7 @@ import { UnsupportedChainIdError } from '@harmony-react/core'
 // ...
 
 function Component () {
-  const { error } = useWeb3React()
+  const { error } = useHarmonyReact()
   const isUnsupportedChainIdError = error instanceof UnsupportedChainIdError
   // ...
 }å

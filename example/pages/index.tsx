@@ -1,5 +1,5 @@
 import React from 'react'
-import { Web3ReactProvider, useWeb3React, UnsupportedChainIdError } from '@harmony-react/core'
+import { Web3ReactProvider, useHarmonyReact, UnsupportedChainIdError } from '@harmony-react/core'
 import {
   NoEthereumProviderError,
   UserRejectedRequestError as UserRejectedRequestErrorInjected
@@ -91,7 +91,7 @@ export default function() {
 }
 
 function ChainId() {
-  const { chainId } = useWeb3React()
+  const { chainId } = useHarmonyReact()
 
   return (
     <>
@@ -105,7 +105,7 @@ function ChainId() {
 }
 
 function BlockNumber() {
-  const { chainId, library } = useWeb3React()
+  const { chainId, library } = useHarmonyReact()
 
   const [blockNumber, setBlockNumber] = React.useState<number>()
   React.useEffect((): any => {
@@ -150,7 +150,7 @@ function BlockNumber() {
 }
 
 function Account() {
-  const { account } = useWeb3React()
+  const { account } = useHarmonyReact()
 
   return (
     <>
@@ -170,7 +170,7 @@ function Account() {
 }
 
 function Balance() {
-  const { account, library, chainId } = useWeb3React()
+  const { account, library, chainId } = useHarmonyReact()
 
   const [balance, setBalance] = React.useState()
   React.useEffect((): any => {
@@ -209,7 +209,7 @@ function Balance() {
 }
 
 function Header() {
-  const { active, error } = useWeb3React()
+  const { active, error } = useHarmonyReact()
 
   return (
     <>
@@ -234,7 +234,7 @@ function Header() {
 }
 
 function App() {
-  const context = useWeb3React<Web3Provider>()
+  const context = useHarmonyReact<Web3Provider>()
   const { connector, library, chainId, account, activate, deactivate, active, error } = context
 
   // handle logic to recognize the connector currently being activated

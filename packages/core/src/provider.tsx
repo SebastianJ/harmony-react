@@ -2,7 +2,7 @@ import React, { createContext, useContext, useMemo } from 'react'
 import invariant from 'tiny-invariant'
 
 import { Web3ReactContextInterface } from './types'
-import { useWeb3ReactManager } from './manager'
+import { useHarmonyReactManager } from './manager'
 
 export const PRIMARY_KEY = 'primary'
 const CONTEXTS: { [key: string]: React.Context<Web3ReactContextInterface> } = {}
@@ -43,7 +43,7 @@ export function createWeb3ReactRoot(key: string): (args: Web3ReactProviderArgume
       deactivate,
 
       error
-    } = useWeb3ReactManager()
+    } = useHarmonyReactManager()
 
     const active = connector !== undefined && chainId !== undefined && account !== undefined && !!!error
     const library = useMemo(
@@ -79,6 +79,6 @@ export function getWeb3ReactContext<T = any>(key: string = PRIMARY_KEY): React.C
   return CONTEXTS[key]
 }
 
-export function useWeb3React<T = any>(key?: string): Web3ReactContextInterface<T> {
+export function useHarmonyReact<T = any>(key?: string): Web3ReactContextInterface<T> {
   return useContext(getWeb3ReactContext(key))
 }

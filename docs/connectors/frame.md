@@ -31,7 +31,7 @@ const frame = new FrameConnector({ supportedChainIds: [1] })
 import { UserRejectedRequestError } from '@harmony-react/frame-connector'
 
 function Component () {
-  const { error } = useWeb3React()
+  const { error } = useHarmonyReact()
   const isUserRejectedRequestError = error instanceof UserRejectedRequestError
   // ...
 }

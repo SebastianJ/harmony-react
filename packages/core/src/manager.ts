@@ -112,7 +112,7 @@ async function augmentConnectorUpdate(
   return { provider, chainId, account }
 }
 
-export function useWeb3ReactManager(): Web3ReactManagerReturn {
+export function useHarmonyReactManager(): Web3ReactManagerReturn {
   const [state, dispatch] = useReducer(reducer, {})
   const { connector, provider, chainId, account, onError, error } = state
 

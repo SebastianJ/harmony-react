@@ -33,7 +33,7 @@ const injected = new InjectedConnector({ supportedChainIds: [1, 3, 4, 5, 42] })
 import { NoEthereumProviderError } from '@harmony-react/injected-connector'
 
 function Component () {
-  const { error } = useWeb3React()
+  const { error } = useHarmonyReact()
   const isNoEthereumProviderError = error instanceof NoEthereumProviderError
   // ...
 }
@@ -46,7 +46,7 @@ function Component () {
 import { UserRejectedRequestError } from '@harmony-react/injected-connector'
 
 function Component () {
-  const { error } = useWeb3React()
+  const { error } = useHarmonyReact()
   const isUserRejectedRequestError = error instanceof UserRejectedRequestError
   // ...
 }

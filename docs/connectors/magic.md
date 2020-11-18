@@ -38,7 +38,7 @@ Happens when the user closes the connection window.
 import { UserRejectedRequestError } from '@harmony-react/magic-connector'
 
 function Component() {
-  const { error } = useWeb3React()
+  const { error } = useHarmonyReact()
   const isNoEthereumProviderError = error instanceof UserRejectedRequestError
   // ...
 }
@@ -54,7 +54,7 @@ Happens when the Magic link verification fails.
 import { FailedVerificationError } from '@harmony-react/magic-connector'
 
 function Component() {
-  const { error } = useWeb3React()
+  const { error } = useHarmonyReact()
   const isNoEthereumProviderError = error instanceof FailedVerificationError
   // ...
 }
@@ -70,7 +70,7 @@ Happens when the Magic rate limit has been reached.
 import { MagicLinkRateLimitError } from '@harmony-react/magic-connector'
 
 function Component() {
-  const { error } = useWeb3React()
+  const { error } = useHarmonyReact()
   const isNoEthereumProviderError = error instanceof MagicLinkRateLimitError
   // ...
 }
@@ -86,7 +86,7 @@ Happens when the Magic link has expired.
 import { MagicLinkExpiredError } from '@harmony-react/magic-connector'
 
 function Component() {
-  const { error } = useWeb3React()
+  const { error } = useHarmonyReact()
   const isNoEthereumProviderError = error instanceof MagicLinkExpiredError
   // ...
 }
