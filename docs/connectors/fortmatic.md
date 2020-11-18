@@ -5,7 +5,7 @@
 - [Example](#example)
 
 ## Install
-`yarn add @web3-react/fortmatic-connector`
+`yarn add @harmony-react/fortmatic-connector`
 
 ## Arguments
 ```typescript
@@ -15,7 +15,7 @@ chainId: number
 
 ## Example
 ```javascript
-import { FortmaticConnector } from '@web3-react/fortmatic-connector'
+import { FortmaticConnector } from '@harmony-react/fortmatic-connector'
 
 const fortmatic = new FortmaticConnector({ apiKey: '...', chainId: 4 })
 ```

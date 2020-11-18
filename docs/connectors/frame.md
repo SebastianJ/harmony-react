@@ -8,7 +8,7 @@
     - [Example](#example-1)
 
 ## Install
-`yarn add @web3-react/frame-connector`
+`yarn add @harmony-react/frame-connector`
 
 ## Arguments
 ```typescript
@@ -17,7 +17,7 @@ supportedChainIds: number[]
 
 ## Example
 ```javascript
-import { FrameConnector } from '@web3-react/frame-connector'
+import { FrameConnector } from '@harmony-react/frame-connector'
 
 const frame = new FrameConnector({ supportedChainIds: [1] })
 ```
@@ -28,7 +28,7 @@ const frame = new FrameConnector({ supportedChainIds: [1] })
 
 #### Example
 ```javascript
-import { UserRejectedRequestError } from '@web3-react/frame-connector'
+import { UserRejectedRequestError } from '@harmony-react/frame-connector'
 
 function Component () {
   const { error } = useWeb3React()

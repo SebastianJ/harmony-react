@@ -5,7 +5,7 @@
 - [Example](#example)
 
 ## Install
-`yarn add @web3-react/network-connector`
+`yarn add @harmony-react/network-connector`
 
 ## Arguments
 ```typescript
@@ -17,7 +17,7 @@ requestTimeoutMs?: number
 
 ## Example
 ```javascript
-import { NetworkConnector } from '@web3-react/network-connector'
+import { NetworkConnector } from '@harmony-react/network-connector'
 
 const network = new NetworkConnector({ urls: { 1: RPC_URLS[1] } })
 ```
