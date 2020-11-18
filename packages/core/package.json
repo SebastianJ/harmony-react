@@ -3,7 +3,7 @@
   "publishConfig": {
     "access": "public"
   },
-  "version": "6.1.8-alpha.1",
+  "version": "6.1.8-alpha.2",
   "description": "A simple, maximally extensible, dependency minimized framework for building modern Ethereum dApps",
   "keywords": [
     "react",
@@ -36,8 +36,8 @@
   },
   "dependencies": {
     "@ethersproject/keccak256": "^5.0.0-beta.130",
-    "@harmony-react/abstract-connector": "^6.1.8-alpha.1",
-    "@harmony-react/types": "^6.1.8-alpha.1",
+    "@harmony-react/abstract-connector": "^6.1.8-alpha.2",
+    "@harmony-react/types": "^6.1.8-alpha.2",
     "tiny-invariant": "^1.0.6",
     "tiny-warning": "^1.0.3"
   },
