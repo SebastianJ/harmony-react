@@ -11,7 +11,7 @@ export class NoHarmonyWalletProviderError extends Error {
   public constructor() {
     super()
     this.name = this.constructor.name
-    this.message = 'No Harmony Mathwallet provider was found on window.harmony.'
+    this.message = 'No Harmony Mathwallet provider was found on window.onewallet.'
   }
 }
 
@@ -31,13 +31,13 @@ export class WalletLockedError extends Error {
   }
 }
 
-export class HarmonyMathwalletConnector extends AbstractConnector {
+export class HarmonyOneWalletConnector extends AbstractConnector {
   constructor(kwargs: AbstractConnectorArguments) {
     super(kwargs)
   }
 
   public async activate(): Promise<ConnectorUpdate> {
-    if (!window.harmony) {
+    if (!window.onewallet) {
       throw new NoHarmonyWalletProviderError()
     }
 
@@ -53,9 +53,9 @@ export class HarmonyMathwalletConnector extends AbstractConnector {
   private generateProvider(): (Harmony | undefined) {
     let network
     try {
-      network = window?.harmony?.network
+      network = window?.onewallet?.network
     } catch {
-      warning(false, 'window.harmony.network was unsuccessful')
+      warning(false, 'window.onewallet.network was unsuccessful')
     }
 
     let harmony: Harmony | undefined
@@ -93,15 +93,15 @@ export class HarmonyMathwalletConnector extends AbstractConnector {
   }
 
   public async getChainId(): Promise<number | string> {
-    if (!window.harmony) {
+    if (!window.onewallet) {
       throw new NoHarmonyWalletProviderError()
     }
 
     let chainId
     try {
-      chainId = window.harmony.network.chain_id
+      chainId = window.onewallet.network.chain_id
     } catch {
-      warning(false, 'window.harmony.network.chain_id was unsuccessful')
+      warning(false, 'window.onewallet.network.chain_id was unsuccessful')
     }
 
     return chainId
@@ -115,16 +115,16 @@ export class HarmonyMathwalletConnector extends AbstractConnector {
   }
 
   public async close() {
-    await (window as Window).harmony?.forgetIdentity()
+    await (window as Window).onewallet?.forgetIdentity()
     this.emitDeactivate()
   }
 
   private async retrieveAccount() : Promise<null | string> {
-    if (!window.harmony) {
+    if (!window.onewallet) {
       throw new NoHarmonyWalletProviderError()
     }
 
-    let harmony = (window as Window).harmony
+    let harmony = (window as Window).onewallet
     let account: null | string = null
 
     if (harmony) {
@@ -144,7 +144,7 @@ export class HarmonyMathwalletConnector extends AbstractConnector {
   }
 
   public async isAuthorized(): Promise<boolean> {
-    if (!window.harmony) {
+    if (!window.onewallet) {
       return false
     }
 

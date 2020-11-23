@@ -1,5 +1,5 @@
 {
-  "name": "@harmony-react/harmony-mathwallet-connector",
+  "name": "@harmony-react/harmony-onewallet-connector",
   "publishConfig": {
     "access": "public"
   },

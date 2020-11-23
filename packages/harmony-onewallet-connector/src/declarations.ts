@@ -1,4 +1,4 @@
-interface MathWallet {
+interface OneWallet {
   send: unknown
   enable: () => Promise<string[]>
   on?: (method: string, listener: (...args: any[]) => void) => void
@@ -9,7 +9,7 @@ interface MathWallet {
 }
 
 declare interface Window {
-  harmony?: MathWallet
+  onewallet?: OneWallet
 }
 
 declare const __DEV__: boolean

@@ -7,6 +7,9 @@ import {
 import { UserRejectedRequestError as UserRejectedRequestErrorWalletConnect } from '@harmony-react/walletconnect-connector'
 import { UserRejectedRequestError as UserRejectedRequestErrorFrame } from '@harmony-react/frame-connector'
 import { Web3Provider } from '@ethersproject/providers'
+import { BigNumber } from '@ethersproject/bignumber'
+import { Harmony } from '@harmony-js/core'
+import { toBech32 } from '@harmony-js/crypto'
 import { formatEther } from '@ethersproject/units'
 
 import { useEagerConnect, useInactiveListener } from '../hooks'
@@ -23,7 +26,8 @@ import {
   magic,
   portis,
   squarelink,
-  torus
+  torus,
+  mathwallet
 } from '../connectors'
 import { Spinner } from '../components/Spinner'
 
@@ -40,7 +44,8 @@ enum ConnectorNames {
   Magic = 'Magic',
   Portis = 'Portis',
   Squarelink = 'Squarelink',
-  Torus = 'Torus'
+  Torus = 'Torus',
+  Mathwallet = 'MathWallet'
 }
 
 const connectorsByName: { [connectorName in ConnectorNames]: any } = {
@@ -56,7 +61,8 @@ const connectorsByName: { [connectorName in ConnectorNames]: any } = {
   [ConnectorNames.Magic]: magic,
   [ConnectorNames.Portis]: portis,
   [ConnectorNames.Squarelink]: squarelink,
-  [ConnectorNames.Torus]: torus
+  [ConnectorNames.Torus]: torus,
+  [ConnectorNames.Mathwallet]: mathwallet
 }
 
 function getErrorMessage(error: Error) {
@@ -76,9 +82,16 @@ function getErrorMessage(error: Error) {
   }
 }
 
-function getLibrary(provider: any): Web3Provider {
-  const library = new Web3Provider(provider)
-  library.pollingInterval = 12000
+function getLibrary(provider: any): Web3Provider | Harmony {
+  var library: Web3Provider | Harmony
+
+  if (provider?.chainType === 'hmy') {
+    library = provider.blockchain
+  } else {
+    library = new Web3Provider(provider)
+    library.pollingInterval = 12000
+  }
+
   return library
 }
 
@@ -106,15 +119,21 @@ function ChainId() {
 
 function BlockNumber() {
   const { chainId, library } = useHarmonyReact()
+  const isHmyLibrary = (library?.messenger?.chainType === 'hmy')
 
   const [blockNumber, setBlockNumber] = React.useState<number>()
   React.useEffect((): any => {
     if (!!library) {
       let stale = false
 
+      //let blockNumberMethod = (library?.chainType === 'hmy') ? library.blockchain.getBlockNumber() : library.getBlockNumber
+
       library
         .getBlockNumber()
-        .then((blockNumber: number) => {
+        .then((blockNumber: any) => {
+          if (isHmyLibrary) {
+            blockNumber = BigNumber.from(blockNumber.result).toNumber()
+          }
           if (!stale) {
             setBlockNumber(blockNumber)
           }
@@ -128,11 +147,16 @@ function BlockNumber() {
       const updateBlockNumber = (blockNumber: number) => {
         setBlockNumber(blockNumber)
       }
-      library.on('block', updateBlockNumber)
+      
+      if (library.on) {
+        library.on('block', updateBlockNumber)
+      }
 
       return () => {
         stale = true
-        library.removeListener('block', updateBlockNumber)
+        if (library.on) {
+          library.removeListener('block', updateBlockNumber)
+        }
         setBlockNumber(undefined)
       }
     }
@@ -150,7 +174,9 @@ function BlockNumber() {
 }
 
 function Account() {
-  const { account } = useHarmonyReact()
+  var { account, library } = useHarmonyReact()
+  const isHmyLibrary = (library?.messenger?.chainType === 'hmy')
+  account = isHmyLibrary ? toBech32(account) : account
 
   return (
     <>
@@ -171,15 +197,20 @@ function Account() {
 
 function Balance() {
   const { account, library, chainId } = useHarmonyReact()
+  const isHmyLibrary = (library?.messenger?.chainType === 'hmy')
 
   const [balance, setBalance] = React.useState()
   React.useEffect((): any => {
     if (!!account && !!library) {
       let stale = false
+      let accountArgs = isHmyLibrary ? { address: toBech32(account) } : account
 
       library
-        .getBalance(account)
+        .getBalance(accountArgs)
         .then((balance: any) => {
+          if (isHmyLibrary) {
+            balance = balance.result
+          }
           if (!stale) {
             setBalance(balance)
           }
@@ -203,7 +234,7 @@ function Balance() {
       <span role="img" aria-label="gold">
         💰
       </span>
-      <span>{balance === null ? 'Error' : balance ? `Ξ${formatEther(balance)}` : ''}</span>
+      <span>{balance === null ? 'Error' : balance ? (isHmyLibrary ? formatEther(balance) : `Ξ${formatEther(balance)}`) : ''}</span>
     </>
   )
 }
@@ -234,8 +265,9 @@ function Header() {
 }
 
 function App() {
-  const context = useHarmonyReact<Web3Provider>()
+  const context = useHarmonyReact()
   const { connector, library, chainId, account, activate, deactivate, active, error } = context
+  const isHmyLibrary = (library?.messenger?.chainType === 'hmy')
 
   // handle logic to recognize the connector currently being activated
   const [activatingConnector, setActivatingConnector] = React.useState<any>()
@@ -342,7 +374,7 @@ function App() {
           margin: 'auto'
         }}
       >
-        {!!(library && account) && (
+        {!!(library && !isHmyLibrary && account) && (
           <button
             style={{
               height: '3rem',
@@ -476,6 +508,20 @@ function App() {
             }}
           >
             Kill Torus Session
+          </button>
+        )}
+        {connector === connectorsByName[ConnectorNames.Mathwallet] && (
+          <button
+            style={{
+              height: '3rem',
+              borderRadius: '1rem',
+              cursor: 'pointer'
+            }}
+            onClick={() => {
+              ;(connector as any).close()
+            }}
+          >
+            Kill MathWallet Session
           </button>
         )}
       </div>

@@ -11,6 +11,7 @@ import { MagicConnector } from '@harmony-react/magic-connector'
 import { PortisConnector } from '@harmony-react/portis-connector'
 import { SquarelinkConnector } from '@harmony-react/squarelink-connector'
 import { TorusConnector } from '@harmony-react/torus-connector'
+import { HarmonyMathwalletConnector } from '@harmony-react/harmony-mathwallet-connector'
 
 const POLLING_INTERVAL = 12000
 const RPC_URLS: { [chainId: number]: string } = {
@@ -67,3 +68,5 @@ export const squarelink = new SquarelinkConnector({
 })
 
 export const torus = new TorusConnector({ chainId: 1 })
+
+export const mathwallet = new HarmonyMathwalletConnector({ supportedChainIds: [1, 2] })
