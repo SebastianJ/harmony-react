@@ -1,8 +1,4 @@
 interface MathWallet {
-  send: unknown
-  enable: () => Promise<string[]>
-  on?: (method: string, listener: (...args: any[]) => void) => void
-  removeListener?: (method: string, listener: (...args: any[]) => void) => void
   getAccount: () => Promise<any>
   forgetIdentity: () => void
   network?: any

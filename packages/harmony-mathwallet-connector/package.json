@@ -36,8 +36,8 @@
   },
   "dependencies": {
     "@harmony-js/core": "^0.1.55",
-    "@harmony-react/abstract-connector": "^6.1.8-alpha.2",
-    "@harmony-react/types": "^6.1.8-alpha.2",
+    "@web3-react/abstract-connector": "latest",
+    "@web3-react/types": "latest",
     "tiny-warning": "^1.0.3"
   },
   "license": "GPL-3.0-or-later"

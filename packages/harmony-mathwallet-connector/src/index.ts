@@ -1,11 +1,9 @@
-import { AbstractConnectorArguments, ConnectorUpdate } from '@harmony-react/types'
-import { AbstractConnector } from '@harmony-react/abstract-connector'
+import { AbstractConnectorArguments, ConnectorUpdate } from '@web3-react/types'
+import { AbstractConnector } from '@web3-react/abstract-connector'
 import { fromBech32 } from '@harmony-js/crypto'
 import { Harmony } from '@harmony-js/core'
 import { ChainID, ChainType } from '@harmony-js/utils'
 import warning from 'tiny-warning'
-
-//import { SendReturnResult, SendReturn, Send, SendOld } from './types'
 
 export class NoHarmonyWalletProviderError extends Error {
   public constructor() {

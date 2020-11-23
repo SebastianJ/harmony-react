@@ -1,10 +1,10 @@
 import { useState, useEffect } from 'react'
-import { useHarmonyReact } from '@harmony-react/core'
+import { useWeb3React } from '@web3-react/core'
 
 import { injected } from './connectors'
 
 export function useEagerConnect() {
-  const { activate, active } = useHarmonyReact()
+  const { activate, active } = useWeb3React()
 
   const [tried, setTried] = useState(false)
 
@@ -31,7 +31,7 @@ export function useEagerConnect() {
 }
 
 export function useInactiveListener(suppress: boolean = false) {
-  const { active, error, activate } = useHarmonyReact()
+  const { active, error, activate } = useWeb3React()
 
   useEffect((): any => {
     const { ethereum } = window as any

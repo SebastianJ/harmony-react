@@ -1,11 +1,11 @@
 import React from 'react'
-import { Web3ReactProvider, useHarmonyReact, UnsupportedChainIdError } from '@harmony-react/core'
+import { Web3ReactProvider, useWeb3React, UnsupportedChainIdError } from '@web3-react/core'
 import {
   NoEthereumProviderError,
   UserRejectedRequestError as UserRejectedRequestErrorInjected
-} from '@harmony-react/injected-connector'
-import { UserRejectedRequestError as UserRejectedRequestErrorWalletConnect } from '@harmony-react/walletconnect-connector'
-import { UserRejectedRequestError as UserRejectedRequestErrorFrame } from '@harmony-react/frame-connector'
+} from '@web3-react/injected-connector'
+import { UserRejectedRequestError as UserRejectedRequestErrorWalletConnect } from '@web3-react/walletconnect-connector'
+import { UserRejectedRequestError as UserRejectedRequestErrorFrame } from '@web3-react/frame-connector'
 import { Web3Provider } from '@ethersproject/providers'
 import { BigNumber } from '@ethersproject/bignumber'
 import { Harmony } from '@harmony-js/core'
@@ -27,6 +27,7 @@ import {
   portis,
   squarelink,
   torus,
+  onewallet,
   mathwallet
 } from '../connectors'
 import { Spinner } from '../components/Spinner'
@@ -45,6 +46,7 @@ enum ConnectorNames {
   Portis = 'Portis',
   Squarelink = 'Squarelink',
   Torus = 'Torus',
+  OneWallet = 'OneWallet',
   Mathwallet = 'MathWallet'
 }
 
@@ -62,6 +64,7 @@ const connectorsByName: { [connectorName in ConnectorNames]: any } = {
   [ConnectorNames.Portis]: portis,
   [ConnectorNames.Squarelink]: squarelink,
   [ConnectorNames.Torus]: torus,
+  [ConnectorNames.OneWallet]: onewallet,
   [ConnectorNames.Mathwallet]: mathwallet
 }
 
@@ -104,7 +107,7 @@ export default function() {
 }
 
 function ChainId() {
-  const { chainId } = useHarmonyReact()
+  const { chainId } = useWeb3React()
 
   return (
     <>
@@ -118,7 +121,7 @@ function ChainId() {
 }
 
 function BlockNumber() {
-  const { chainId, library } = useHarmonyReact()
+  const { chainId, library } = useWeb3React()
   const isHmyLibrary = (library?.messenger?.chainType === 'hmy')
 
   const [blockNumber, setBlockNumber] = React.useState<number>()
@@ -174,7 +177,7 @@ function BlockNumber() {
 }
 
 function Account() {
-  var { account, library } = useHarmonyReact()
+  var { account, library } = useWeb3React()
   const isHmyLibrary = (library?.messenger?.chainType === 'hmy')
   account = isHmyLibrary ? toBech32(account) : account
 
@@ -196,7 +199,7 @@ function Account() {
 }
 
 function Balance() {
-  const { account, library, chainId } = useHarmonyReact()
+  const { account, library, chainId } = useWeb3React()
   const isHmyLibrary = (library?.messenger?.chainType === 'hmy')
 
   const [balance, setBalance] = React.useState()
@@ -240,7 +243,7 @@ function Balance() {
 }
 
 function Header() {
-  const { active, error } = useHarmonyReact()
+  const { active, error } = useWeb3React()
 
   return (
     <>
@@ -265,7 +268,7 @@ function Header() {
 }
 
 function App() {
-  const context = useHarmonyReact()
+  const context = useWeb3React()
   const { connector, library, chainId, account, activate, deactivate, active, error } = context
   const isHmyLibrary = (library?.messenger?.chainType === 'hmy')
 
@@ -508,6 +511,20 @@ function App() {
             }}
           >
             Kill Torus Session
+          </button>
+        )}
+        {connector === connectorsByName[ConnectorNames.OneWallet] && (
+          <button
+            style={{
+              height: '3rem',
+              borderRadius: '1rem',
+              cursor: 'pointer'
+            }}
+            onClick={() => {
+              ;(connector as any).close()
+            }}
+          >
+            Kill OneWallet Session
           </button>
         )}
         {connector === connectorsByName[ConnectorNames.Mathwallet] && (
