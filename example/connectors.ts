@@ -1,16 +1,18 @@
-import { InjectedConnector } from '@harmony-react/injected-connector'
-import { NetworkConnector } from '@harmony-react/network-connector'
-import { WalletConnectConnector } from '@harmony-react/walletconnect-connector'
-import { WalletLinkConnector } from '@harmony-react/walletlink-connector'
-import { LedgerConnector } from '@harmony-react/ledger-connector'
-import { TrezorConnector } from '@harmony-react/trezor-connector'
-import { FrameConnector } from '@harmony-react/frame-connector'
-import { AuthereumConnector } from '@harmony-react/authereum-connector'
-import { FortmaticConnector } from '@harmony-react/fortmatic-connector'
-import { MagicConnector } from '@harmony-react/magic-connector'
-import { PortisConnector } from '@harmony-react/portis-connector'
-import { SquarelinkConnector } from '@harmony-react/squarelink-connector'
-import { TorusConnector } from '@harmony-react/torus-connector'
+import { InjectedConnector } from '@web3-react/injected-connector'
+import { NetworkConnector } from '@web3-react/network-connector'
+import { WalletConnectConnector } from '@web3-react/walletconnect-connector'
+import { WalletLinkConnector } from '@web3-react/walletlink-connector'
+import { LedgerConnector } from '@web3-react/ledger-connector'
+import { TrezorConnector } from '@web3-react/trezor-connector'
+import { FrameConnector } from '@web3-react/frame-connector'
+import { AuthereumConnector } from '@web3-react/authereum-connector'
+import { FortmaticConnector } from '@web3-react/fortmatic-connector'
+import { MagicConnector } from '@web3-react/magic-connector'
+import { PortisConnector } from '@web3-react/portis-connector'
+import { SquarelinkConnector } from '@web3-react/squarelink-connector'
+import { TorusConnector } from '@web3-react/torus-connector'
+import { OneWalletConnector } from '@harmony-react/onewallet-connector'
+import { MathwalletConnector } from '@harmony-react/mathwallet-connector'
 
 const POLLING_INTERVAL = 12000
 const RPC_URLS: { [chainId: number]: string } = {
@@ -67,3 +69,7 @@ export const squarelink = new SquarelinkConnector({
 })
 
 export const torus = new TorusConnector({ chainId: 1 })
+
+export const onewallet = new HarmonyOneWalletConnector({ supportedChainIds: [1, 2] })
+
+export const mathwallet = new HarmonyMathwalletConnector({ supportedChainIds: [1, 2] })
