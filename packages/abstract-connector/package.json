@@ -1,5 +1,5 @@
 {
-  "name": "@harmony-react/mathwallet-connector",
+  "name": "@harmony-react/abstract-connector",
   "publishConfig": {
     "access": "public"
   },
@@ -15,16 +15,15 @@
     "web3",
     "context",
     "frontend",
-    "dapp",
-    "metamask"
+    "dapp"
   ],
   "author": "Noah Zinsmeister <noahwz@gmail.com>",
   "repository": {
     "type": "git",
-    "url": "git://github.com/harmony-one/harmony-react.git"
+    "url": "git://github.com/NoahZinsmeister/web3-react.git"
   },
   "main": "dist/index.js",
-  "module": "dist/injected-connector.esm.js",
+  "module": "dist/abstract-connector.esm.js",
   "typings": "dist/index.d.ts",
   "files": [
     "dist"
@@ -35,8 +34,9 @@
     "lint": "tsdx lint src"
   },
   "dependencies": {
+    "@web3-react/abstract-connector": "latest",
     "@harmony-js/core": "^0.1.55",
-    "@harmony-react/abstract-connector": "^6.1.8-alpha.6",
+    "@harmony-react/types": "^6.1.8-alpha.6",
     "@web3-react/types": "latest",
     "tiny-warning": "^1.0.3"
   },

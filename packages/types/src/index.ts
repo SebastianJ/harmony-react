@@ -2,7 +2,7 @@ export class NoWalletProviderError extends Error {
   public constructor() {
     super()
     this.name = this.constructor.name
-    this.message = 'No wallet provider was found the window object.'
+    this.message = 'No wallet provider was found on the window object.'
   }
 }
 

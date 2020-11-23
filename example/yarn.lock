@@ -1557,25 +1557,32 @@
     "@types/bn.js" "^4.11.3"
     bn.js "^4.11.8"
 
-"@harmony-react/mathwallet-connector@6.1.8-alpha.5":
-  version "6.1.8-alpha.5"
-  resolved "https://registry.yarnpkg.com/@harmony-react/mathwallet-connector/-/mathwallet-connector-6.1.8-alpha.5.tgz#514d37f13fc9bfb09edef5faa8a6b357736b7458"
-  integrity sha512-8q2Yr5b6AmbG/dqCjgUlB/kRErkuBPJfTNb4LTx1MefO4pf00H4IefdX3Bxd30HjHJnoxcj63ZSCvs8JVmLyfw==
+"@harmony-react/mathwallet-connector@6.1.8-alpha.6":
+  version "6.1.8-alpha.6"
+  resolved "https://registry.yarnpkg.com/@harmony-react/mathwallet-connector/-/mathwallet-connector-6.1.8-alpha.6.tgz#efef5fd0944263d2e65882c3ac0b3741d26aad1f"
+  integrity sha512-uHxvl+ET0zkHAw7Pr6tIoyeAkjC3MAV5TG74tBqrlam+2Bo1DIJ4fk6+MCdoq8crVp9uiAIcNPw5Koc1LRNikA==
   dependencies:
     "@harmony-js/core" "^0.1.55"
+    "@harmony-react/types" "^6.1.8-alpha.6"
     "@web3-react/abstract-connector" latest
     "@web3-react/types" latest
     tiny-warning "^1.0.3"
 
-"@harmony-react/onewallet-connector@6.1.8-alpha.5":
-  version "6.1.8-alpha.5"
-  resolved "https://registry.yarnpkg.com/@harmony-react/onewallet-connector/-/onewallet-connector-6.1.8-alpha.5.tgz#97eb21256280bca6c625d1186ad2b53404f72f7c"
-  integrity sha512-3Es3e3j6GkpNFc3Fb5Y7kWvwnddd9CQf8yfxGRPkKLpuWsihUp/zeOB9MVhiBL1RJAKkQJLOajGq8njfH1Rk/A==
+"@harmony-react/onewallet-connector@6.1.8-alpha.6":
+  version "6.1.8-alpha.6"
+  resolved "https://registry.yarnpkg.com/@harmony-react/onewallet-connector/-/onewallet-connector-6.1.8-alpha.6.tgz#1cad7acbf75077373b5718cd9e76a1d327674689"
+  integrity sha512-MERb9u+ZXqLWsaIG1cPvWsBrgiLNwfRjtOmOM7lOT3sUEMWGVefmKNotHSyLWvlBDbU/8gu9Q3DZDmJQzYFsgQ==
   dependencies:
     "@harmony-js/core" "^0.1.55"
+    "@harmony-react/types" "^6.1.8-alpha.6"
     "@web3-react/abstract-connector" latest
     "@web3-react/types" latest
     tiny-warning "^1.0.3"
+
+"@harmony-react/types@^6.1.8-alpha.6":
+  version "6.1.8-alpha.6"
+  resolved "https://registry.yarnpkg.com/@harmony-react/types/-/types-6.1.8-alpha.6.tgz#0a138ac1627e113d948b987654ef9d144bc6416c"
+  integrity sha512-Vbv984WPnf3aIQr44vyThanvadECbntYshQac/wVT5mMyJ8f0Vc5G97IJiUeD14ZWGPTT8m6PzcbVCi7Zzyq6Q==
 
 "@ledgerhq/devices@^4.78.0":
   version "4.78.0"
