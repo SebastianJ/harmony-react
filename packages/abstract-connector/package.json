@@ -3,7 +3,7 @@
   "publishConfig": {
     "access": "public"
   },
-  "version": "6.1.8-alpha.6",
+  "version": "6.1.8-alpha.7",
   "description": "A simple, maximally extensible, dependency minimized framework for building modern Ethereum dApps",
   "keywords": [
     "react",
@@ -34,9 +34,9 @@
     "lint": "tsdx lint src"
   },
   "dependencies": {
-    "@web3-react/abstract-connector": "latest",
     "@harmony-js/core": "^0.1.55",
-    "@harmony-react/types": "^6.1.8-alpha.6",
+    "@harmony-react/types": "^6.1.8-alpha.7",
+    "@web3-react/abstract-connector": "latest",
     "@web3-react/types": "latest",
     "tiny-warning": "^1.0.3"
   },
