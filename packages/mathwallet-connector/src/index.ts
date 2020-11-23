@@ -1,33 +1,10 @@
 import { AbstractConnectorArguments, ConnectorUpdate } from '@web3-react/types'
 import { AbstractConnector } from '@web3-react/abstract-connector'
+import { NoWalletProviderError, UserRejectedRequestError, WalletLockedError } from '@harmony-react/types'
 import { fromBech32 } from '@harmony-js/crypto'
 import { Harmony } from '@harmony-js/core'
 import { ChainID, ChainType } from '@harmony-js/utils'
 import warning from 'tiny-warning'
-
-export class NoHarmonyWalletProviderError extends Error {
-  public constructor() {
-    super()
-    this.name = this.constructor.name
-    this.message = 'No Harmony Mathwallet provider was found on window.harmony.'
-  }
-}
-
-export class UserRejectedRequestError extends Error {
-  public constructor() {
-    super()
-    this.name = this.constructor.name
-    this.message = 'The user rejected the request.'
-  }
-}
-
-export class WalletLockedError extends Error {
-  public constructor() {
-    super()
-    this.name = this.constructor.name
-    this.message = 'The wallet is locked. Please unlock it.'
-  }
-}
 
 export class MathWalletConnector extends AbstractConnector {
   constructor(kwargs: AbstractConnectorArguments) {
@@ -36,7 +13,7 @@ export class MathWalletConnector extends AbstractConnector {
 
   public async activate(): Promise<ConnectorUpdate> {
     if (!window.harmony) {
-      throw new NoHarmonyWalletProviderError()
+      throw new NoWalletProviderError()
     }
 
     let account = await this.retrieveAccount()
@@ -92,7 +69,7 @@ export class MathWalletConnector extends AbstractConnector {
 
   public async getChainId(): Promise<number | string> {
     if (!window.harmony) {
-      throw new NoHarmonyWalletProviderError()
+      throw new NoWalletProviderError()
     }
 
     let chainId
@@ -119,7 +96,7 @@ export class MathWalletConnector extends AbstractConnector {
 
   private async retrieveAccount() : Promise<null | string> {
     if (!window.harmony) {
-      throw new NoHarmonyWalletProviderError()
+      throw new NoWalletProviderError()
     }
 
     let harmony = (window as Window).harmony

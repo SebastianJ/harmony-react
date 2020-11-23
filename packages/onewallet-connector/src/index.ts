@@ -1,42 +1,19 @@
 import { AbstractConnectorArguments, ConnectorUpdate } from '@web3-react/types'
 import { AbstractConnector } from '@web3-react/abstract-connector'
+import { NoWalletProviderError, UserRejectedRequestError, WalletLockedError } from '@harmony-react/types'
 import { fromBech32 } from '@harmony-js/crypto'
 import { Harmony } from '@harmony-js/core'
 import { ChainID, ChainType } from '@harmony-js/utils'
 import warning from 'tiny-warning'
 
-export class NoHarmonyWalletProviderError extends Error {
-  public constructor() {
-    super()
-    this.name = this.constructor.name
-    this.message = 'No Harmony Mathwallet provider was found on window.onewallet.'
-  }
-}
-
-export class UserRejectedRequestError extends Error {
-  public constructor() {
-    super()
-    this.name = this.constructor.name
-    this.message = 'The user rejected the request.'
-  }
-}
-
-export class WalletLockedError extends Error {
-  public constructor() {
-    super()
-    this.name = this.constructor.name
-    this.message = 'The wallet is locked. Please unlock it.'
-  }
-}
-
-export class HarmonyOneWalletConnector extends AbstractConnector {
+export class OneWalletConnector extends AbstractConnector {
   constructor(kwargs: AbstractConnectorArguments) {
     super(kwargs)
   }
 
   public async activate(): Promise<ConnectorUpdate> {
     if (!window.onewallet) {
-      throw new NoHarmonyWalletProviderError()
+      throw new NoWalletProviderError()
     }
 
     let account = await this.retrieveAccount()
@@ -92,7 +69,7 @@ export class HarmonyOneWalletConnector extends AbstractConnector {
 
   public async getChainId(): Promise<number | string> {
     if (!window.onewallet) {
-      throw new NoHarmonyWalletProviderError()
+      throw new NoWalletProviderError()
     }
 
     let chainId
@@ -119,7 +96,7 @@ export class HarmonyOneWalletConnector extends AbstractConnector {
 
   private async retrieveAccount() : Promise<null | string> {
     if (!window.onewallet) {
-      throw new NoHarmonyWalletProviderError()
+      throw new NoWalletProviderError()
     }
 
     let harmony = (window as Window).onewallet

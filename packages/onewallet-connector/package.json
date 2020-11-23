@@ -38,6 +38,7 @@
     "@harmony-js/core": "^0.1.55",
     "@web3-react/abstract-connector": "latest",
     "@web3-react/types": "latest",
+    "@harmony-react/types": "6.1.8-alpha.5",
     "tiny-warning": "^1.0.3"
   },
   "license": "GPL-3.0-or-later"

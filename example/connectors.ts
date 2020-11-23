@@ -12,7 +12,7 @@ import { PortisConnector } from '@web3-react/portis-connector'
 import { SquarelinkConnector } from '@web3-react/squarelink-connector'
 import { TorusConnector } from '@web3-react/torus-connector'
 import { OneWalletConnector } from '@harmony-react/onewallet-connector'
-import { MathwalletConnector } from '@harmony-react/mathwallet-connector'
+import { MathWalletConnector } from '@harmony-react/mathwallet-connector'
 
 const POLLING_INTERVAL = 12000
 const RPC_URLS: { [chainId: number]: string } = {
@@ -70,6 +70,6 @@ export const squarelink = new SquarelinkConnector({
 
 export const torus = new TorusConnector({ chainId: 1 })
 
-export const onewallet = new HarmonyOneWalletConnector({ supportedChainIds: [1, 2] })
+export const onewallet = new OneWalletConnector({ supportedChainIds: [1, 2] })
 
-export const mathwallet = new HarmonyMathwalletConnector({ supportedChainIds: [1, 2] })
+export const mathwallet = new MathWalletConnector({ supportedChainIds: [1, 2] })
